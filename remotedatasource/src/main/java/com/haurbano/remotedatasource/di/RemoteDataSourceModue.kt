@@ -5,5 +5,5 @@ import com.haurbano.remotedatasource.products.ProductsRemoteDataSourceImpl
 import org.koin.dsl.module
 
 val remoteDataSourceModule = module {
-    factory <ProductsRemoteDataSource>{ ProductsRemoteDataSourceImpl(get(), get()) }
+    factory <ProductsRemoteDataSource>{ ProductsRemoteDataSourceImpl(get(), get(), get()) }
 }

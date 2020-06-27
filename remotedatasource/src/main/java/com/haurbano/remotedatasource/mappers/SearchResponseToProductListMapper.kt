@@ -1,18 +1,16 @@
 package com.haurbano.remotedatasource.mappers
 
-import com.haurbano.domain.models.Product
+import com.haurbano.domain.models.ProductPreview
 import com.haurbano.remotedatasource.models.ProductsSearchResponse
 import java.lang.StringBuilder
 
-class SearchResponseToProductListMapper {
-    operator fun invoke(response: ProductsSearchResponse): List<Product> {
+class SearchResponseToProductPreviewListMapper {
+    operator fun invoke(response: ProductsSearchResponse): List<ProductPreview> {
         return response.results.map { product ->
-            Product(
-                availableQuantity = product.available_quantity,
+            ProductPreview(
                 price = product.price,
                 title = product.title,
                 thumbnail = getHttpsUrl(product.thumbnail),
-                soldQuantity = product.sold_quantity,
                 condition = product.condition,
                 currencyId = product.currency_id,
                 id = product.id

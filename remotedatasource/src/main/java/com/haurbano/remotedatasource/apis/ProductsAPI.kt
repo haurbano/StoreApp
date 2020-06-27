@@ -1,5 +1,6 @@
 package com.haurbano.remotedatasource.apis
 
+import com.haurbano.remotedatasource.models.GetProductResponse
 import com.haurbano.remotedatasource.urls.Urls
 import com.haurbano.remotedatasource.models.ProductsSearchResponse
 import retrofit2.http.GET
@@ -13,4 +14,7 @@ interface ProductsAPI {
         @Path("siteId") siteId: String = "MCO",
         @Query("q") query: String
     ): ProductsSearchResponse
+
+    @GET(Urls.GET_PRODUCT)
+    suspend fun getProduct(@Path("productId") productId: String): GetProductResponse
 }
