@@ -17,14 +17,26 @@ class ProductsActivity : AppCompatActivity() {
 
     private val viewModel: ProductViewModel by viewModel()
     private val productAdapter = ProductAdapter()
+    private var query = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
         setupProductsAdapter()
+        listenProductsChanges()
         searchButton.setOnClickListener {
             searchProductBy()
         }
+    }
+
+    private fun listenProductsChanges() {
+        viewModel.getProducts().observe(this, Observer { products ->
+            when (products.status) {
+                SUCCESS -> updateProducts(products.data)
+                ERROR -> Log.e("--haur", "Error Products: ${products.message}")
+                LOADING -> Log.d("--haur", "Loading products")
+            }
+        })
     }
 
     private fun setupProductsAdapter() {
@@ -36,13 +48,14 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun searchProductBy() {
-        viewModel.searchBy("apple").observe(this, Observer { products ->
-            when (products.status) {
-                SUCCESS -> updateProducts(products.data)
-                ERROR -> Log.e("--haur", "Error Products: ${products.message}")
-                LOADING -> Log.d("--haur", "Loading products")
-            }
-        })
+        query = "apple"
+        viewModel.searchBy("apple")
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val bundle = Bundle().apply { putString("query", query) }
+        outState.putBundle("search", bundle)
     }
 
     private fun updateProducts(products: List<Product>?) {
