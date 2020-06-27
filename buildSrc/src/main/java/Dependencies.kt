@@ -9,6 +9,8 @@ internal object Versions {
     const val ktLintVersion = "0.33.0"
     const val retrofitVersion = "2.9.0"
     const val lifeCycleVersion = "2.2.0"
+    const val recyclerViewVersion = "28.0.0"
+    const val constrainLayoutVersion = "1.1.3"
 }
 
 object Dependencies {
@@ -21,6 +23,8 @@ object Dependencies {
     const val ktLint                = "com.pinterest:ktlint:${Versions.ktLintVersion}"
     const val androidViewModel      = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifeCycleVersion}"
     const val liveData              = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifeCycleVersion}"
+    const val recyclerView          = "com.android.support:recyclerview-v7:${Versions.recyclerViewVersion}"
+    const val constrainLayout       = "androidx.constraintlayout:constraintlayout:${Versions.constrainLayoutVersion}"
 
     const val retrofit              = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
