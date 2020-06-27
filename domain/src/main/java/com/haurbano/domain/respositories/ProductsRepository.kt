@@ -4,4 +4,5 @@ import com.haurbano.domain.models.Product
 
 interface ProductsRepository {
     suspend fun searchProductsBy(query: String): List<Product>
+    suspend fun getProductDetails(productId: String): Product
 }
