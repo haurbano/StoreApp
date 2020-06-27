@@ -45,6 +45,9 @@ dependencies {
     implementation Dependencies.koinAndroid
     implementation Dependencies.koinViewModel
 
+    // UI
+    implementation Dependencies.picasso
+
     // Testing
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.jUnitExtAndroid

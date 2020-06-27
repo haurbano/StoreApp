@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.haurbano.domain.models.Product
 import com.haurbano.presentation.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 
 class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
@@ -33,6 +34,10 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
         with(holder.view) {
             productTitle.text = product.title
             productPrice.text = product.price.toString()
+            Picasso.get()
+                .load(product.thumbnail)
+                .error(R.drawable.ic_broken_image_24)
+                .into(this.productImage)
         }
     }
 }

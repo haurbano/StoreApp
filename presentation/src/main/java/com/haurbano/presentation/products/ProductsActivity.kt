@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.haurbano.domain.common.Status.SUCCESS
 import com.haurbano.domain.common.Status.ERROR
 import com.haurbano.domain.common.Status.LOADING
@@ -28,7 +28,7 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun setupProductsAdapter() {
-        val linearLayoutManager = LinearLayoutManager(this)
+        val linearLayoutManager = GridLayoutManager(this, 3)
         rvProducts.apply {
             adapter = productAdapter
             layoutManager = linearLayoutManager
