@@ -4,18 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.haurbano.domain.models.Product
+import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(val listener: (ProductPreview) -> Unit) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
-    private var products = mutableListOf<Product>()
+    private var products = mutableListOf<ProductPreview>()
 
-    fun updateProducts(newProducts: List<Product>) {
+    fun updateProducts(newProductPreviews: List<ProductPreview>) {
         products.clear()
-        products.addAll(newProducts)
+        products.addAll(newProductPreviews)
         notifyDataSetChanged()
     }
 
@@ -31,6 +31,7 @@ class ProductAdapter : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
+        holder.view.setOnClickListener { listener(product) }
         with(holder.view) {
             productTitle.text = product.title
             productPrice.text = product.price.toString()
