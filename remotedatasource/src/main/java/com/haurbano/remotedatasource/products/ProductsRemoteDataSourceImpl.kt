@@ -11,7 +11,7 @@ class ProductsRemoteDataSourceImpl(
 ) : ProductsRemoteDataSource {
 
     override suspend fun searchProductsBy(query: String): List<Product> {
-        val response = productsAPI.searchProduct(query)
+        val response = productsAPI.searchProduct(query = query)
         return mapper(response)
     }
 }

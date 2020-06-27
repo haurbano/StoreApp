@@ -27,12 +27,19 @@ android {
 preBuild.dependsOn ktlint
 
 dependencies {
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':domain')
 
     // Basics
     implementation Dependencies.kotlin
     implementation Dependencies.coreKtx
     implementation Dependencies.appCompat
+
+    // Lifecycle
+    implementation Dependencies.androidViewModel
+    implementation Dependencies.liveData
 
     // DI
     implementation Dependencies.koinAndroid

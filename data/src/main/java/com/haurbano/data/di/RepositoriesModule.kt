@@ -5,5 +5,5 @@ import com.haurbano.domain.respositories.ProductsRepository
 import org.koin.dsl.module
 
 val repositoriesModule = module {
-    factory <ProductsRepository>{ ProductsRepositoryImpl(get()) }
+    factory <ProductsRepository> { ProductsRepositoryImpl(get()) }
 }
