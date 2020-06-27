@@ -29,6 +29,7 @@ preBuild.dependsOn ktlint
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(path: ':domain')
+    implementation project(path: ':data')
 
     // Basics
     implementation Dependencies.kotlin
