@@ -32,7 +32,7 @@ dependencies {
     implementation Dependencies.appCompat
 
     // DI
-    implementation Dependencies.koin
+    implementation Dependencies.koinAndroid
     implementation Dependencies.koinViewModel
 
     // Testing

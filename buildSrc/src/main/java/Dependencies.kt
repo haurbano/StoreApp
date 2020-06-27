@@ -5,7 +5,7 @@ internal object Versions {
     const val appCompatVersion = "1.1.0"
     const val jUnitVersion = "4.12"
     const val jUnitExtAndroidVersion = "1.1.1"
-    const val koinVersion = "2.1.5"
+    const val koinVersion = "2.1.1"
 }
 
 object Dependencies {
@@ -13,6 +13,7 @@ object Dependencies {
     const val coreKtx       = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
     const val appCompat     = "androidx.appcompat:appcompat:${Versions.appCompatVersion}"
     const val koin          = "org.koin:koin-core:${Versions.koinVersion}"
+    const val koinAndroid   = "org.koin:koin-android:${Versions.koinVersion}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koinVersion}"
 }
 
