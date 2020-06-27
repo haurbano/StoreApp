@@ -26,9 +26,13 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
+    // Basics
     implementation Dependencies.kotlin
     implementation Dependencies.coreKtx
     implementation Dependencies.appCompat
+
+    //DI
+    implementation Dependencies.koin
 
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.jUnitExtAndroid

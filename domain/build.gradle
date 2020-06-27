@@ -4,6 +4,9 @@ apply plugin: 'kotlin'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Dependencies.kotlin
+
+    // DI
+    implementation Dependencies.koin
 }
 
 sourceCompatibility = "1.7"

@@ -30,6 +30,9 @@ dependencies {
     implementation Dependencies.coreKtx
     implementation Dependencies.appCompat
 
+    //DI
+    implementation Dependencies.koin
+
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.jUnitExtAndroid
 
