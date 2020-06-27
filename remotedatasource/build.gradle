@@ -1,19 +1,18 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: '../ktlint.gradle'
 
 android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "com.haurbano.mymercadolibre"
         minSdkVersion 26
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -24,15 +23,11 @@ android {
     }
 }
 
-preBuild.dependsOn ktlint
-
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(path: ':domain')
     implementation project(path: ':data')
-    implementation project(path: ':remotedatasource')
+    implementation project(path: ':domain')
 
-    // Basics
     implementation Dependencies.kotlin
     implementation Dependencies.coreKtx
     implementation Dependencies.appCompat
@@ -40,6 +35,11 @@ dependencies {
     //DI
     implementation Dependencies.koinAndroid
 
+    // Retrofit
+    implementation Dependencies.retrofit
+    implementation Dependencies.retrofitGsonConverter
+
     testImplementation TestDependencies.jUnit
     androidTestImplementation TestDependencies.jUnitExtAndroid
+
 }
