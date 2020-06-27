@@ -1,29 +1,28 @@
 package com.haurbano.presentation.products
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.ActivityOptions
 import android.os.Bundle
 import android.util.Log
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.haurbano.domain.common.Status.SUCCESS
-import com.haurbano.domain.common.Status.ERROR
-import com.haurbano.domain.common.Status.LOADING
+import com.haurbano.domain.common.Status.*
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
 import com.haurbano.presentation.details.ProductDetailActivity
 import kotlinx.android.synthetic.main.activity_products.*
-import kotlinx.android.synthetic.main.item_product.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductsActivity : AppCompatActivity() {
 
-    private val productClicked: (ProductPreview) -> Unit = { product ->
-        val bundleTransaction = ActivityOptionsCompat.makeSceneTransitionAnimation(
-            this, Pair(productImage, ProductDetailActivity.MAIN_IMAGE_TRANSACTION_KEY)
+    private val productClicked: (ProductPreview, ImageView) -> Unit = { product, image ->
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+            this,
+            image,
+            getString(R.string.transition_detail_name)
         )
-        ProductDetailActivity.start(this, product.id, product.thumbnail, bundleTransaction.toBundle())
+        ProductDetailActivity.start(this, product.id, product.thumbnail, options.toBundle())
     }
 
     private val viewModel: ProductViewModel by viewModel()

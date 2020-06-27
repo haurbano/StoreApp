@@ -1,1 +1,3 @@
-<resources></resources>
+<resources>
+    <string name="transition_detail_name">transition_details</string>
+</resources>

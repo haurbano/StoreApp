@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Transition
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductDetails
@@ -22,7 +20,6 @@ class ProductDetailActivity : AppCompatActivity() {
     private val pendingActions = ArrayList<()-> Unit>()
 
     companion object {
-        const val MAIN_IMAGE_TRANSACTION_KEY = "top_image"
         private const val PRODUCT_ID_KEY = "PRODUCT_ID_KEY"
         private const val THUMBNAIL_KEY = "THUMBNAIL_KEY"
 
@@ -42,41 +39,14 @@ class ProductDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
-        ViewCompat.setTransitionName(productDetailImage, MAIN_IMAGE_TRANSACTION_KEY)
-        showTemporalThumbnail()
         listenProductDetailsChanges()
         fetchProductDetails()
-        addTransactionListener()
+        showTemporalThumbnail()
     }
 
     private fun showTemporalThumbnail() {
         val thumbnail = intent.getStringExtra(THUMBNAIL_KEY)
         displayProductImage(thumbnail)
-    }
-
-    private fun addTransactionListener() {
-        val transaction = window.sharedElementEnterTransition
-        transaction?.let {
-            transaction.addListener(object : Transition.TransitionListener {
-                override fun onTransitionEnd(p0: Transition?) {
-                    pendingActions.forEach { it() }
-                    imageTransitionStatus = TransitionStatus.FINISHED
-                    transaction.removeListener(this)
-                }
-
-                override fun onTransitionResume(p0: Transition?) {}
-
-                override fun onTransitionPause(p0: Transition?) {}
-
-                override fun onTransitionCancel(p0: Transition?) {
-                    transaction.removeListener(this)
-                }
-
-                override fun onTransitionStart(p0: Transition?) {
-                    imageTransitionStatus = TransitionStatus.STARTED
-                }
-            })
-        }
     }
 
     private fun fetchProductDetails() {

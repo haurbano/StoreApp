@@ -3,13 +3,14 @@ package com.haurbano.presentation.products
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class ProductAdapter(val listener: (ProductPreview) -> Unit) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(val listener: (ProductPreview, ImageView) -> Unit) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var products = mutableListOf<ProductPreview>()
 
@@ -31,7 +32,7 @@ class ProductAdapter(val listener: (ProductPreview) -> Unit) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val product = products[position]
-        holder.view.setOnClickListener { listener(product) }
+        holder.view.setOnClickListener { listener(product, holder.view.productImage) }
         with(holder.view) {
             productTitle.text = product.title
             productPrice.text = product.price.toString()
