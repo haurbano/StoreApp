@@ -65,6 +65,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private fun renderProductDetails(details: ProductDetails?) {
         details?.let {
             replaceThumbnail(it.images.first())
+            tvProductDetailsTitle.text = it.title
         }
     }
 

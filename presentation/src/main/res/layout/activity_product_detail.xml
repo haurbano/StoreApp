@@ -19,4 +19,13 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:srcCompat="@tools:sample/avatars" />
 
+  <TextView
+      android:id="@+id/tvProductDetailsTitle"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="16dp"
+      tools:text="TextView"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/productDetailImage" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
