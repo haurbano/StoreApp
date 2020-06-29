@@ -22,8 +22,8 @@
 
   <ImageView
       android:id="@+id/productDetailImage"
-      android:layout_width="150dp"
-      android:layout_height="150dp"
+      android:layout_width="180dp"
+      android:layout_height="180dp"
       android:layout_marginTop="8dp"
       android:transitionName="@string/transition_detail_name"
       app:layout_constraintEnd_toEndOf="parent"
@@ -68,16 +68,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+      <TextView
+          android:id="@+id/txtProductDetilDescription"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTitle"
+          tools:text="This is the best product in the whole world" />
+
+      <TextView
+          android:id="@+id/txtDescriptionTitle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="Description"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtProductDetailPrice" />
 
       <TextView
           android:id="@+id/tvProductDetailsTitle"
-          android:layout_width="wrap_content"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
           android:layout_marginTop="8dp"
-          android:textSize="23sp"
           android:textColor="@color/color_black"
+          android:textSize="23sp"
+          app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/txtConditionSellsInfo"
           tools:text="My Awesomw Product" />
@@ -86,7 +107,6 @@
           android:id="@+id/txtConditionSellsInfo"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
           android:layout_marginTop="8dp"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
@@ -96,7 +116,6 @@
           android:id="@+id/txtProductDetailPrice"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_marginStart="16dp"
           android:layout_marginTop="8dp"
           android:textColor="@color/color_price"
           android:textSize="25sp"

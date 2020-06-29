@@ -8,5 +8,8 @@
 
     <string name="msg_network_error">No Internet Connection</string>
     <string name="msg_unknown_error">Something went wrong :(</string>
+
     <string name="button_title_buy">Buy</string>
+    <string name="msg_condition_sell_info">%1$s - %2$d Sold</string>
+    <string name="msg_product_price">$ %1$s</string>
 </resources>

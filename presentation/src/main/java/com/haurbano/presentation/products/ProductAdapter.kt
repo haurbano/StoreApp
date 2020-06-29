@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
+import com.haurbano.presentation.common.displayPrice
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_product.view.*
 
@@ -35,7 +36,7 @@ class ProductAdapter(val listener: (ProductPreview, ImageView) -> Unit) : Recycl
         holder.view.setOnClickListener { listener(product, holder.view.productImage) }
         with(holder.view) {
             productTitle.text = product.title
-            productPrice.text = product.price.toString()
+            productPrice.text = product.price.displayPrice()
             Picasso.get()
                 .load(product.thumbnail)
                 .error(R.drawable.ic_broken_image_24)

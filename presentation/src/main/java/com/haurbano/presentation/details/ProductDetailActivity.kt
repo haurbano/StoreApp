@@ -11,6 +11,7 @@ import com.haurbano.domain.models.ProductDetails
 import com.haurbano.presentation.R
 import com.haurbano.presentation.common.ErrorMessageProvider
 import com.haurbano.presentation.common.TransitionStatus
+import com.haurbano.presentation.common.displayPrice
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import org.koin.android.ext.android.inject
@@ -95,7 +96,8 @@ class ProductDetailActivity : AppCompatActivity() {
         details?.let {
             replaceThumbnail(it.images.first())
             tvProductDetailsTitle.text = it.title
-            txtProductDetailPrice.text = it.price.toString()
+            txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
+            txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
         }
     }
 
