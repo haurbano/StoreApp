@@ -14,6 +14,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
+import java.lang.IllegalStateException
 
 class ProductsRemoteDataSourceTest : AndroidUnitTest() {
 
@@ -59,6 +60,25 @@ class ProductsRemoteDataSourceTest : AndroidUnitTest() {
         // Then
         val mappedMockResponse = productResponseToProductDetailsMapper(mockResponse)
         assert(mappedMockResponse == response)
+    }
+
+    @Test(expected = IllegalStateException::class)
+    fun `searchProductsBy and an error occurs`() = runBlocking {
+        val query = "Query"
+        `when`(productsApi.searchProduct("MCO", query)).thenThrow(IllegalStateException())
+
+        // Then
+        val response = productsRemoteDataSource.searchProductsBy("Query")
+    }
+
+    @Test(expected = IllegalStateException::class)
+    fun `getProductDetails and an error occurs`() = runBlocking {
+        // Given
+        val productId = "FakeId"
+        `when`(productsApi.getProduct(productId)).thenThrow(IllegalStateException())
+
+        // When
+        val response = productsRemoteDataSource.getProductDetails(productId)
     }
 
 }

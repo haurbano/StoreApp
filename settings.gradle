@@ -1,3 +1,4 @@
+include ':android-testing-commons'
 include ':testing-commons'
 include ':remotedatasource'
 include ':data'

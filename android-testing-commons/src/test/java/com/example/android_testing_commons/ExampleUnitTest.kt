@@ -1,4 +1,4 @@
-package com.haurbano.remotedatasource
+package com.example.android_testing_commons
 
 import org.junit.Test
 

@@ -9,7 +9,6 @@ data class GetProductResponse(
     val category_id: String,
     val condition: String,
     val currency_id: String,
-    val descriptions: List<Any>,
     val id: String,
     val initial_quantity: Int,
     val original_price: Int,
