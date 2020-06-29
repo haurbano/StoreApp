@@ -1,5 +1,7 @@
 package com.haurbano.domain
 
+import com.example.testing_commons.MocksFactory
+import com.example.testing_commons.UnitTest
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
@@ -8,7 +10,6 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
-import java.lang.IllegalStateException
 
 class GetProductDetailUseCaseTest : UnitTest(){
 
@@ -16,18 +17,7 @@ class GetProductDetailUseCaseTest : UnitTest(){
     lateinit var productsRepository: ProductsRepository
 
     lateinit var getProductsUseCase: GetProductDetailsUseCase
-    private val productDetail = ProductDetails(
-        availableQuantity = 2,
-        attributes = emptyList(),
-        condition = "New",
-        id = "23jask323",
-        title = "Mock Product",
-        soldQuantity = 3,
-        warranty = "1 Year",
-        currencyId = "COP",
-        images = emptyList(),
-        price = 32000
-    )
+    private val productDetail = MocksFactory().createObject(ProductDetails::class.java)
 
     @Before
     fun setup() {

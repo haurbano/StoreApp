@@ -1,5 +1,7 @@
 package com.haurbano.domain
 
+import com.example.testing_commons.MocksFactory
+import com.example.testing_commons.UnitTest
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.SearchProductsUseCase
@@ -14,23 +16,10 @@ class SearchProductsUseCaseTest : UnitTest() {
 
     @Mock
     lateinit var productsRepository: ProductsRepository
+    private val mocksFactory = MocksFactory()
 
     lateinit var searchProductsUseCase: SearchProductsUseCase
-    private val productPreviewList = listOf(
-        getMockProductPreview(),
-        getMockProductPreview(),
-        getMockProductPreview()
-    )
-
-    private fun getMockProductPreview(): ProductPreview{
-        return ProductPreview("New",
-            "COP",
-            "asf",
-            99000,
-            "fake URL",
-            "FakeProduct"
-        )
-    }
+    private val productPreviewList = mocksFactory.createListOf(ProductPreview::class.java, 3)
 
     @Before
     fun setup() {

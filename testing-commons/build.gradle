@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(path: ':domain')
+
+    implementation Dependencies.kotlin
+
+    // Testing
+    implementation TestDependencies.jUnit
+    implementation TestDependencies.mockito3
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

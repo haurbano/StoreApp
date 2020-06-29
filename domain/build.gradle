@@ -12,9 +12,10 @@ dependencies {
     implementation Dependencies.koin
 
     // Testing
-    implementation TestDependencies.jUnit
-    implementation TestDependencies.mockito3
-    implementation TestDependencies.coroutinesTesting
+    testImplementation TestDependencies.jUnit
+    testImplementation TestDependencies.mockito3
+    testImplementation project(path: ':testing-commons')
+    testImplementation TestDependencies.coroutinesTesting
 }
 
 sourceCompatibility = "1.7"
