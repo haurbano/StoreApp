@@ -32,7 +32,7 @@ class AndroidMocksFactory(
             original_price = 35000,
             permalink = "url",
             pictures = emptyList(),
-            secure_thumbnail = "http:url",
+            secure_thumbnail = "https:url",
             sold_quantity = 23,
             thumbnail = "http:url"
         )
