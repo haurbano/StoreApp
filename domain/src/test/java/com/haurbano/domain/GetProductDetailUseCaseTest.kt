@@ -17,7 +17,7 @@ class GetProductDetailUseCaseTest : UnitTest(){
     lateinit var productsRepository: ProductsRepository
 
     lateinit var getProductsUseCase: GetProductDetailsUseCase
-    private val productDetail = MocksFactory().createObject(ProductDetails::class.java)
+    private val productDetail = mocksFactory.createObject(ProductDetails::class.java)
 
     @Before
     fun setup() {

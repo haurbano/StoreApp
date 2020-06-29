@@ -16,7 +16,6 @@ class SearchProductsUseCaseTest : UnitTest() {
 
     @Mock
     lateinit var productsRepository: ProductsRepository
-    private val mocksFactory = MocksFactory()
 
     lateinit var searchProductsUseCase: SearchProductsUseCase
     private val productPreviewList = mocksFactory.createListOf(ProductPreview::class.java, 3)
