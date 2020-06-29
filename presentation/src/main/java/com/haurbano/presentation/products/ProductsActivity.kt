@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -37,6 +38,7 @@ class ProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_products)
         setupProductsAdapter()
         listenProductsChanges()
+        showFirstMessage()
     }
 
     private fun getTransitionBundle(image: ImageView): Bundle {
@@ -91,11 +93,30 @@ class ProductsActivity : AppCompatActivity() {
         if (productPreviews == null || productPreviews.isEmpty()) {
             showEmptyResults()
         } else {
+            showProductsList()
             productAdapter.updateProducts(productPreviews)
         }
     }
 
     private fun showEmptyResults() {
-        // Shoe empty view later
+        rvProducts.visibility = View.GONE
+        imgUserFeedbackProducts.setImageResource(R.drawable.ic_empty_box)
+        imgUserFeedbackProducts.visibility = View.VISIBLE
+        txtUserFeedbackProducts.text = getString(R.string.msg_empty_results)
+        txtUserFeedbackProducts.visibility = View.VISIBLE
+    }
+
+    private fun showFirstMessage() {
+        rvProducts.visibility = View.GONE
+        imgUserFeedbackProducts.setImageResource(R.drawable.ic_search_black_24dp)
+        imgUserFeedbackProducts.visibility = View.VISIBLE
+        txtUserFeedbackProducts.text = getString(R.string.first_message_user)
+        txtUserFeedbackProducts.visibility = View.VISIBLE
+    }
+
+    private fun showProductsList() {
+        rvProducts.visibility = View.VISIBLE
+        imgUserFeedbackProducts.visibility = View.GONE
+        txtUserFeedbackProducts.visibility = View.GONE
     }
 }
