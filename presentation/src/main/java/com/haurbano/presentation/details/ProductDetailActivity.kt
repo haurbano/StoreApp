@@ -50,7 +50,7 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun fetchProductDetails() {
-        val productId = intent.getStringExtra(PRODUCT_ID_KEY)
+        val productId = intent.getStringExtra(PRODUCT_ID_KEY) ?: ""
         viewModel.fetchProductDetails(productId)
     }
 

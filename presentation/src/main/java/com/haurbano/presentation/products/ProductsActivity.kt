@@ -4,7 +4,6 @@ import android.app.ActivityOptions
 import android.app.SearchManager
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -15,8 +14,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.haurbano.domain.common.Status.*
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
+import com.haurbano.presentation.common.ErrorMessageProvider
 import com.haurbano.presentation.details.ProductDetailActivity
 import kotlinx.android.synthetic.main.activity_products.*
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProductsActivity : AppCompatActivity() {
@@ -32,6 +33,7 @@ class ProductsActivity : AppCompatActivity() {
 
     private val viewModel: ProductViewModel by viewModel()
     private val productAdapter = ProductAdapter(productClicked)
+    private val errorMessageProvider: ErrorMessageProvider by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,12 +84,13 @@ class ProductsActivity : AppCompatActivity() {
         viewModel.getProducts().observe(this, Observer { products ->
             when (products.status) {
                 SUCCESS -> {
-                    updateProducts(products.data)
                     hideProgressBar()
+                    updateProducts(products.data)
                 }
                 ERROR -> {
                     hideProgressBar()
-                    Log.e("--haur", "Error Products: ${products.message}")
+                    val msg = errorMessageProvider.getMessageFor(products.error)
+                    showErrorUI(msg)
                 }
                 LOADING -> showProgressBar()
             }
@@ -134,6 +137,14 @@ class ProductsActivity : AppCompatActivity() {
         imgUserFeedbackProducts.setImageResource(R.drawable.ic_search_black_24dp)
         imgUserFeedbackProducts.visibility = View.VISIBLE
         txtUserFeedbackProducts.text = getString(R.string.first_message_user)
+        txtUserFeedbackProducts.visibility = View.VISIBLE
+    }
+
+    private fun showErrorUI(msg: String) {
+        rvProducts.visibility = View.GONE
+        imgUserFeedbackProducts.setImageResource(R.drawable.ic_error_24)
+        imgUserFeedbackProducts.visibility = View.VISIBLE
+        txtUserFeedbackProducts.text = msg
         txtUserFeedbackProducts.visibility = View.VISIBLE
     }
 

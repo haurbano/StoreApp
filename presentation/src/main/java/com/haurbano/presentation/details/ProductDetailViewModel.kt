@@ -23,12 +23,8 @@ class ProductDetailViewModel(
         productLiveData.postValue(Resource.loading())
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                try {
-                    val productDetails = getProductDetailsUseCase(productId)
-                    productLiveData.postValue(Resource.success(productDetails))
-                } catch (exc: Exception) {
-                    productLiveData.postValue(Resource.error(message = "Something was wrong"))
-                }
+                val productDetails = getProductDetailsUseCase(productId)
+                productLiveData.postValue(productDetails)
             }
         }
     }

@@ -19,12 +19,8 @@ class ProductViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 productsLiveData.postValue(Resource.loading())
-                try {
-                    val products = searchProductsUseCase(query)
-                    productsLiveData.postValue(Resource.success(products))
-                } catch (exc: Exception) {
-                    productsLiveData.postValue(Resource.error(message = "There was a problem"))
-                }
+                val products = searchProductsUseCase(query)
+                productsLiveData.postValue(products)
             }
         }
     }

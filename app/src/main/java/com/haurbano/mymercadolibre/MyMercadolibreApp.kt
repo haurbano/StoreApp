@@ -3,6 +3,7 @@ package com.haurbano.mymercadolibre
 import android.app.Application
 import com.haurbano.data.di.repositoriesModule
 import com.haurbano.domain.di.useCasesModule
+import com.haurbano.presentation.di.presentationUtilsModule
 import com.haurbano.presentation.di.viewModelsModule
 import com.haurbano.remotedatasource.di.apisModule
 import com.haurbano.remotedatasource.di.mappersModule
@@ -22,7 +23,8 @@ class MyMercadolibreApp : Application() {
                 remoteDataSourceModule,
                 mappersModule,
                 apisModule,
-                viewModelsModule
+                viewModelsModule,
+                presentationUtilsModule
             )
         }
     }

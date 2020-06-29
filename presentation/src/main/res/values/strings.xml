@@ -5,4 +5,7 @@
     <string name="search_title">Search</string>
     <string name="msg_empty_results">No products for your search</string>
     <string name="first_message_user">Find what you want</string>
+
+    <string name="msg_network_error">No Internet Connection</string>
+    <string name="msg_unknown_error">Something went wrong :(</string>
 </resources>
