@@ -12,6 +12,8 @@ internal object Versions {
     const val recyclerViewVersion = "28.0.0"
     const val constrainLayoutVersion = "1.1.3"
     const val picassoVersion = "2.71828"
+    const val mockito3Version = "3.3.3"
+    const val coroutinesTestingVersion = "1.3.7"
 }
 
 object Dependencies {
@@ -33,6 +35,8 @@ object Dependencies {
 }
 
 object TestDependencies {
-    const val jUnit             = "junit:junit:${Versions.jUnitVersion}"
-    const val jUnitExtAndroid   = "androidx.test.ext:junit:${Versions.jUnitExtAndroidVersion}"
+    const val jUnit                 = "junit:junit:${Versions.jUnitVersion}"
+    const val jUnitExtAndroid       = "androidx.test.ext:junit:${Versions.jUnitExtAndroidVersion}"
+    const val mockito3              = "org.mockito:mockito-core:${Versions.mockito3Version}"
+    const val coroutinesTesting     = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTestingVersion}"
 }

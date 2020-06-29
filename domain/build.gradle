@@ -10,6 +10,11 @@ dependencies {
 
     // DI
     implementation Dependencies.koin
+
+    // Testing
+    implementation TestDependencies.jUnit
+    implementation TestDependencies.mockito3
+    implementation TestDependencies.coroutinesTesting
 }
 
 sourceCompatibility = "1.7"
