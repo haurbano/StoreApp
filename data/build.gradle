@@ -38,7 +38,12 @@ dependencies {
     //DI
     implementation Dependencies.koinAndroid
 
+    // Testing
+    testImplementation TestDependencies.mockito3
+    testImplementation TestDependencies.coroutinesTesting
     testImplementation TestDependencies.jUnit
+    testImplementation project(path: ':testing-commons')
     androidTestImplementation TestDependencies.jUnitExtAndroid
+
 
 }
