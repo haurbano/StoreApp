@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#232323</color>
     <color name="colorAccent">#DADADA</color>
     <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_price">#275038</color>
 </resources>
