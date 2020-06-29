@@ -5,5 +5,5 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 abstract class UnitTest {
-    val mocksFactory = MocksFactory()
+    protected val mocksFactory = MocksFactory()
 }

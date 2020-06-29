@@ -3,8 +3,7 @@
     package="com.haurbano.presentation">
 
     <application>
-        <activity android:name=".products.ProductsActivity"
-            android:launchMode="singleTop">
+        <activity android:name=".products.ProductsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

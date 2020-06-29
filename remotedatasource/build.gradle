@@ -39,7 +39,12 @@ dependencies {
     implementation Dependencies.retrofit
     implementation Dependencies.retrofitGsonConverter
 
+    // Testing
+    testImplementation project(path: ':android-testing-commons')
+    testImplementation project(path: ':testing-commons')
+    testImplementation TestDependencies.coroutinesTesting
     testImplementation TestDependencies.jUnit
+    testImplementation TestDependencies.mockito3
     androidTestImplementation TestDependencies.jUnitExtAndroid
 
 }

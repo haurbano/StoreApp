@@ -38,7 +38,15 @@ class ProductsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_products)
         setupProductsAdapter()
         listenProductsChanges()
+        checkSearchAction()
         showFirstMessage()
+        addButtonsListener()
+    }
+
+    private fun addButtonsListener() {
+        imgUserFeedbackProducts.setOnClickListener {
+            onSearchRequested()
+        }
     }
 
     private fun getTransitionBundle(image: ImageView): Bundle {
@@ -49,8 +57,7 @@ class ProductsActivity : AppCompatActivity() {
         ).toBundle()
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
+    private fun checkSearchAction() {
         if (Intent.ACTION_SEARCH == intent?.action) {
             val query = intent.getStringExtra(SearchManager.QUERY)
             query?.let {
@@ -74,11 +81,27 @@ class ProductsActivity : AppCompatActivity() {
     private fun listenProductsChanges() {
         viewModel.getProducts().observe(this, Observer { products ->
             when (products.status) {
-                SUCCESS -> updateProducts(products.data)
-                ERROR -> Log.e("--haur", "Error Products: ${products.message}")
-                LOADING -> Log.d("--haur", "Loading products")
+                SUCCESS -> {
+                    updateProducts(products.data)
+                    hideProgressBar()
+                }
+                ERROR -> {
+                    hideProgressBar()
+                    Log.e("--haur", "Error Products: ${products.message}")
+                }
+                LOADING -> showProgressBar()
             }
         })
+    }
+
+    private fun hideProgressBar() {
+        progressBarProducts.visibility = View.GONE
+    }
+
+    private fun showProgressBar() {
+        imgUserFeedbackProducts.visibility = View.GONE
+        txtUserFeedbackProducts.visibility = View.GONE
+        progressBarProducts.visibility = View.VISIBLE
     }
 
     private fun setupProductsAdapter() {
