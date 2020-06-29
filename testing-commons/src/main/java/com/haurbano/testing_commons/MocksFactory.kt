@@ -1,4 +1,4 @@
-package com.example.testing_commons
+package com.haurbano.testing_commons
 
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.models.ProductPreview

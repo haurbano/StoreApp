@@ -1,10 +1,10 @@
 package com.haurbano.domain
 
-import com.example.testing_commons.MocksFactory
-import com.example.testing_commons.UnitTest
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
+import com.haurbano.testing_commons.MocksFactory
+import com.haurbano.testing_commons.UnitTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

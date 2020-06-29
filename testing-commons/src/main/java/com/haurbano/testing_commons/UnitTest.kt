@@ -1,4 +1,4 @@
-package com.example.testing_commons
+package com.haurbano.testing_commons
 
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
