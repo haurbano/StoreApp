@@ -6,12 +6,12 @@ Search application to find best products on Mercadolibre Argentina
 ## Technologie:
 
 ### Libraries
-- **Retrofit**
-- **Gson**:
-- **Android ViewModels**:
-- **Android LiveData**:
-- **Mckito:**
-- **Koin**
+- **Retrofit**: Requests
+- **Gson**: Map responses from requests
+- **Android ViewModels**
+- **Android LiveData**: UI updates from ViewModel to Activity
+- **Mckito:** Mocks in testing
+- **Koin**: Dependency injection
 
 ### Background Strategy:
 - **Kotlin Coroutines**
