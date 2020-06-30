@@ -5,7 +5,7 @@ import com.haurbano.domain.models.ProductAttribute
 data class GetProductResponse(
     val attributes: List<ProductAttribute>,
     val available_quantity: Int,
-    val base_price: Int,
+    val base_price: Float,
     val category_id: String,
     val condition: String,
     val currency_id: String,
@@ -14,7 +14,7 @@ data class GetProductResponse(
     val original_price: Int,
     val permalink: String,
     val pictures: List<ProductPicture>,
-    val price: Int,
+    val price: Float,
     val secure_thumbnail: String,
     val sold_quantity: Int,
     val thumbnail: String,

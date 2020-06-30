@@ -10,7 +10,7 @@ class SearchResult (
     val id: String,
     val original_price: Any,
     val permalink: String,
-    val price: Int,
+    val price: Float,
     val seller: Seller,
     val sold_quantity: Int,
     val thumbnail: String,

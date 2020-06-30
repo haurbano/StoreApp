@@ -5,7 +5,7 @@ data class ProductDetails(
     val condition: String,
     val currencyId: String,
     val id: String,
-    val price: Int,
+    val price: Float,
     val soldQuantity: Int,
     val title: String,
     val images: List<String>,
