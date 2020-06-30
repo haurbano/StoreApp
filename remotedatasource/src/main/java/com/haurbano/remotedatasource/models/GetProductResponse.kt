@@ -19,7 +19,8 @@ data class GetProductResponse(
     val sold_quantity: Int,
     val thumbnail: String,
     val title: String,
-    val warranty: String
+    val warranty: String?,
+    val catalog_product_id: String?
 ) {
     class Geolocation(
     )

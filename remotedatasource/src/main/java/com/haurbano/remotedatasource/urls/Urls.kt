@@ -6,4 +6,5 @@ object Urls {
 
     const val SEARCH = "/sites/{siteId}/search"
     const val GET_PRODUCT = "/items/{productId}"
+    const val GET_FEATURES_AND_DESCRIPTION = "products/{catalogProductId}"
 }

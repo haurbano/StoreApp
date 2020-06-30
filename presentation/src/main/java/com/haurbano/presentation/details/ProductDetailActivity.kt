@@ -98,6 +98,15 @@ class ProductDetailActivity : AppCompatActivity() {
             tvProductDetailsTitle.text = it.title
             txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
             txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
+            txtProductDetilDescription.text = saveInfo(it.description)
+        }
+    }
+
+    private fun saveInfo(info: String?): String {
+        return if (info != null && info.isNotEmpty()) {
+            info
+        } else {
+            getString(R.string.msg_info_no_available)
         }
     }
 

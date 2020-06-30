@@ -20,6 +20,11 @@ class ProductsRemoteDataSourceImpl(
 
     override suspend fun getProductDetails(productId: String): ProductDetails {
         val response = productsAPI.getProduct(productId)
-        return productResponseToProductDetailsMapper(response)
+        val productDetails = productResponseToProductDetailsMapper(response)
+        if (response.catalog_product_id != null) {
+            val info = productsAPI.getFeaturesAndDescription(response.catalog_product_id)
+            productDetails.description = info.short_description?.content
+        }
+        return productDetails
     }
 }
