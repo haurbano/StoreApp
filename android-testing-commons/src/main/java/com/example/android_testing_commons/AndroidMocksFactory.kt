@@ -44,7 +44,7 @@ class AndroidMocksFactory(
             secure_thumbnail = "https:url",
             sold_quantity = 23,
             thumbnail = "http:url",
-            catalog_product_id = "MLAaasda"
+            catalog_product_id = "MLA32SDL34"
         )
     }
 

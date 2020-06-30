@@ -6,6 +6,7 @@ import com.haurbano.remotedatasource.apis.ProductsAPI
 import com.haurbano.remotedatasource.di.remoteDataSourceModule
 import com.haurbano.remotedatasource.mappers.ProductResponseToProductDetailsMapper
 import com.haurbano.remotedatasource.mappers.SearchResponseToProductPreviewListMapper
+import com.haurbano.remotedatasource.models.FeaturesAndDescriptionResponse
 import com.haurbano.remotedatasource.models.GetProductResponse
 import com.haurbano.remotedatasource.models.ProductsSearchResponse
 import com.haurbano.remotedatasource.products.ProductsRemoteDataSourceImpl
@@ -37,10 +38,10 @@ class ProductsRemoteDataSourceTest : AndroidUnitTest() {
         // Given
         val query = "Query"
         val mockResponse = androidMocksFactory.createObject(ProductsSearchResponse::class.java)
-        `when`(productsApi.searchProduct("MCO", query)).thenReturn(mockResponse)
+        `when`(productsApi.searchProduct(query = query)).thenReturn(mockResponse)
 
         // When
-        val response = productsRemoteDataSource.searchProductsBy("Query")
+        val response = productsRemoteDataSource.searchProductsBy(query)
 
         // Then
         val mappedMockResponse = searchToProductPreviewMapper(mockResponse)
@@ -51,21 +52,23 @@ class ProductsRemoteDataSourceTest : AndroidUnitTest() {
     fun `getProductDetails and the answer is a correct ProductDetails`() = runBlocking {
         // Given
         val productId = "FakeId"
-        val mockResponse = androidMocksFactory.createObject(GetProductResponse::class.java)
-        `when`(productsApi.getProduct(productId)).thenReturn(mockResponse)
+        val productResponseMocked = androidMocksFactory.createObject(GetProductResponse::class.java)
+        val featuresAndDescriptionMocked = androidMocksFactory.createObject(FeaturesAndDescriptionResponse::class.java)
+        `when`(productsApi.getProduct(productId)).thenReturn(productResponseMocked)
+        `when`(productsApi.getFeaturesAndDescription("MLA32SDL34")).thenReturn(featuresAndDescriptionMocked)
 
         // When
         val response = productsRemoteDataSource.getProductDetails(productId)
 
         // Then
-        val mappedMockResponse = productResponseToProductDetailsMapper(mockResponse)
+        val mappedMockResponse = productResponseToProductDetailsMapper(productResponseMocked)
         assert(mappedMockResponse == response)
     }
 
     @Test(expected = IllegalStateException::class)
     fun `searchProductsBy and an error occurs`() = runBlocking {
         val query = "Query"
-        `when`(productsApi.searchProduct("MCO", query)).thenThrow(IllegalStateException())
+        `when`(productsApi.searchProduct(query = query)).thenThrow(IllegalStateException())
 
         // Then
         val response = productsRemoteDataSource.searchProductsBy("Query")
