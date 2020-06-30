@@ -31,8 +31,7 @@ class ProductResponseToProductDetailsMapperTest : AndroidUnitTest() {
     private fun getExpectedMappedResponse(): ProductDetails {
         return ProductDetails(
             availableQuantity = 3,
-            attributes = emptyList(),
-            price = 30000,
+            price = 30000f,
             title = "My Mock Product",
             id = "id",
             condition = "new",

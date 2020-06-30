@@ -38,7 +38,7 @@ class SearchResponseToProductListMapperTest : AndroidUnitTest() {
                 "New",
                 "COP",
                 "id",
-                23000,
+                23000f,
                 "https:url",
                 "My product"
             ),
@@ -46,7 +46,7 @@ class SearchResponseToProductListMapperTest : AndroidUnitTest() {
                 "New",
                 "COP",
                 "id2",
-                24000,
+                24000f,
                 "https:url",
                 "My product 2"
             )
