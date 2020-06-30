@@ -61,80 +61,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imgUserFeedbackDetails"
         tools:text="Something went wrong"
         tools:visibility="gone" />
-    <TextView
-        android:id="@+id/txtProductDetilDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescriptionTitle"
-        tools:text="This is the best product in the whole world" />
 
-    <TextView
-        android:id="@+id/txtDescriptionTitle"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/productDetailsContainer"
+        layout="@layout/layout_product_details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/msg_description"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvFeatures" />
-
-    <TextView
-        android:id="@+id/tvProductDetailsTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/color_black"
-        android:textSize="23sp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtConditionSellsInfo"
-        tools:text="My Awesomw Product" />
-
-    <TextView
-        android:id="@+id/txtConditionSellsInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productDetailImage"
-        tools:text="New - 166 Sold" />
-
-    <TextView
-        android:id="@+id/txtProductDetailPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/color_price"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProductDetailsTitle"
-        tools:text="$ 400.000" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFeatures"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.031"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFeaturesTitle" />
-
-    <TextView
-        android:id="@+id/txtFeaturesTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/msg_features"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtProductDetailPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/imgUserFeedbackDetails"
+        app:layout_constraintVertical_bias="0.0" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

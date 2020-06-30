@@ -13,8 +13,8 @@ import com.haurbano.presentation.R
 import com.haurbano.presentation.common.ErrorMessageProvider
 import com.haurbano.presentation.common.TransitionStatus
 import com.haurbano.presentation.common.displayPrice
+import com.haurbano.presentation.databinding.ActivityProductDetailBinding
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_product_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,6 +25,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private var imageTransitionStatus: TransitionStatus = TransitionStatus.UNDEFINED
     private val pendingActions = ArrayList<()-> Unit>()
     private val featuresAdapter = FeaturesAdapter()
+    private lateinit var binding: ActivityProductDetailBinding
 
     companion object {
         private const val PRODUCT_ID_KEY = "PRODUCT_ID_KEY"
@@ -45,7 +46,8 @@ class ProductDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_detail)
+        binding = ActivityProductDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         listenProductDetailsChanges()
         fetchProductDetails()
         showTemporalThumbnail()
@@ -54,7 +56,7 @@ class ProductDetailActivity : AppCompatActivity() {
 
     private fun setupFeaturesAdapter() {
         val linearLayoutManager = LinearLayoutManager(this)
-        rvFeatures.apply {
+        binding.productDetailsContainer.rvFeatures.apply {
             layoutManager = linearLayoutManager
             adapter = featuresAdapter
         }
@@ -84,32 +86,32 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun showErrorUI(message: String) {
-        progressBarDetails.visibility = View.GONE
-        productDetailsContainer.visibility = View.GONE
-        imgUserFeedbackDetails.visibility = View.VISIBLE
-        txtMsgUserFeedbackDetails.visibility = View.VISIBLE
+        binding.progressBarDetails.visibility = View.GONE
+        binding.productDetailsContainer.root.visibility = View.GONE
+        binding.imgUserFeedbackDetails.visibility = View.VISIBLE
+        binding.txtMsgUserFeedbackDetails.visibility = View.VISIBLE
 
-        imgUserFeedbackDetails.setImageResource(R.drawable.ic_error_24)
-        txtMsgUserFeedbackDetails.text = message
+        binding.imgUserFeedbackDetails.setImageResource(R.drawable.ic_error_24)
+        binding.txtMsgUserFeedbackDetails.text = message
     }
 
     private fun showLoadingUI() {
-        productDetailsContainer.visibility = View.GONE
-        progressBarDetails.visibility = View.VISIBLE
+        binding.productDetailsContainer.root.visibility = View.GONE
+        binding.progressBarDetails.visibility = View.VISIBLE
     }
 
     private fun renderProductDetails(details: ProductDetails?) {
-        progressBarDetails.visibility = View.GONE
-        productDetailsContainer.visibility = View.VISIBLE
-        imgUserFeedbackDetails.visibility = View.GONE
-        txtMsgUserFeedbackDetails.visibility = View.GONE
+        binding.progressBarDetails.visibility = View.GONE
+        binding.productDetailsContainer.root.visibility = View.VISIBLE
+        binding.imgUserFeedbackDetails.visibility = View.GONE
+        binding.txtMsgUserFeedbackDetails.visibility = View.GONE
 
         details?.let {
             replaceThumbnail(it.images.first())
-            tvProductDetailsTitle.text = it.title
-            txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
-            txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
-            txtProductDetilDescription.text = saveInfo(it.description)
+            binding.productDetailsContainer.tvProductDetailsTitle.text = it.title
+            binding.productDetailsContainer.txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
+            binding.productDetailsContainer.txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
+            binding.productDetailsContainer.txtProductDetilDescription.text = saveInfo(it.description)
             featuresAdapter.updateFeatures(it.features)
         }
     }
@@ -136,7 +138,7 @@ class ProductDetailActivity : AppCompatActivity() {
                 .noFade()
                 .noPlaceholder()
                 .error(R.drawable.ic_broken_image_24)
-                .into(productDetailImage)
+                .into(binding.productDetailImage)
         }
     }
 }
