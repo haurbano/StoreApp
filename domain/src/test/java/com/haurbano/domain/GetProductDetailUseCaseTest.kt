@@ -1,5 +1,8 @@
 package com.haurbano.domain
 
+import com.haurbano.domain.common.ErrorEntity
+import com.haurbano.domain.common.Resource
+import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
@@ -28,22 +31,29 @@ class GetProductDetailUseCaseTest : UnitTest(){
     fun `UseCase invoked and the repository return a lis of ProductReview`(): Unit = runBlocking {
         // Given
         val productId = "MockID"
-        `when`(productsRepository.getProductDetails(productId)).thenReturn(productDetail)
+        `when`(productsRepository.getProductDetails(productId)).thenReturn(Resource.success(productDetail))
 
         // When
         val responseProductDetail = getProductsUseCase(productId)
 
         // Then
-        assert(responseProductDetail == productDetail)
+        assert(responseProductDetail.status == Status.SUCCESS)
+        assert(responseProductDetail.data == productDetail)
     }
 
-    @Test(expected = IllegalStateException::class)
+    @Test
     fun `UseCase invoked and a error occurs`() = runBlocking {
         // Given
         val productId = "MockID"
-        `when`(productsRepository.getProductDetails(productId)).thenThrow(IllegalStateException())
+        `when`(productsRepository.getProductDetails(productId)).thenReturn(
+            Resource.error(error = ErrorEntity.NetworkError)
+        )
 
         // When
         val responseProductDetail = getProductsUseCase(productId)
+
+        // Then
+        assert(responseProductDetail.error != null)
+        assert(responseProductDetail.status == Status.ERROR)
     }
 }

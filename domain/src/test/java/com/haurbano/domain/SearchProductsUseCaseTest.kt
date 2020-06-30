@@ -1,5 +1,8 @@
 package com.haurbano.domain
 
+import com.haurbano.domain.common.ErrorEntity
+import com.haurbano.domain.common.Resource
+import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.SearchProductsUseCase
@@ -29,25 +32,31 @@ class SearchProductsUseCaseTest : UnitTest() {
     fun `UseCase invoked and the repository return a list of ProductPreview`(): Unit = runBlocking {
         // Given
         val query = "Pixel 3"
-        `when`(productsRepository.searchProductsBy(query)).thenReturn(productPreviewList)
+        `when`(productsRepository.searchProductsBy(query)).thenReturn(Resource.success(productPreviewList))
 
         // When
         val response = searchProductsUseCase(query)
 
         // Then
-        assert(response.size == 3)
+        assert(response.status == Status.SUCCESS)
+        assert(response.data?.size == 3)
     }
 
-    @Test(expected = IllegalStateException::class)
-    fun `UseCase invoked and an error occurs `() = runBlocking {
+    @Test
+    fun `UseCase invoked and an error occurs`() = runBlocking {
         // Given
         val query = "Pixel 3"
         val errorMessage = "Internet problem"
-        `when`(productsRepository.searchProductsBy(query)).thenThrow(
-            IllegalStateException(errorMessage)
+        `when`(productsRepository.searchProductsBy(query)).thenReturn(
+                Resource.error(error = ErrorEntity.NetworkError
+            )
         )
 
         // When
         val response = searchProductsUseCase(query)
+
+        // Then
+        assert(response.status == Status.ERROR)
+        assert(response.error != null)
     }
 }
