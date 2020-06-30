@@ -9,7 +9,7 @@ data class ProductDetails(
     val soldQuantity: Int,
     val title: String,
     val images: List<String>,
-    val attributes: List<ProductAttribute>,
     val warranty: String?,
-    var description: String? = ""
+    var description: String? = "",
+    var features: List<ProductFeature> = emptyList()
 )

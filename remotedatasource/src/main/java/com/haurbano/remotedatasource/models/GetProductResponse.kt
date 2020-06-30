@@ -1,9 +1,6 @@
 package com.haurbano.remotedatasource.models
 
-import com.haurbano.domain.models.ProductAttribute
-
 data class GetProductResponse(
-    val attributes: List<ProductAttribute>,
     val available_quantity: Int,
     val base_price: Float,
     val category_id: String,
@@ -21,16 +18,4 @@ data class GetProductResponse(
     val title: String,
     val warranty: String?,
     val catalog_product_id: String?
-) {
-    class Geolocation(
-    )
-
-    class Location(
-    )
-
-    class SellerAddress(
-    )
-
-    class Shipping(
-    )
-}
+)

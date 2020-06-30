@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.presentation.R
@@ -23,6 +24,7 @@ class ProductDetailActivity : AppCompatActivity() {
     private val errorMessageProvider: ErrorMessageProvider by inject()
     private var imageTransitionStatus: TransitionStatus = TransitionStatus.UNDEFINED
     private val pendingActions = ArrayList<()-> Unit>()
+    private val featuresAdapter = FeaturesAdapter()
 
     companion object {
         private const val PRODUCT_ID_KEY = "PRODUCT_ID_KEY"
@@ -47,6 +49,15 @@ class ProductDetailActivity : AppCompatActivity() {
         listenProductDetailsChanges()
         fetchProductDetails()
         showTemporalThumbnail()
+        setupFeaturesAdapter()
+    }
+
+    private fun setupFeaturesAdapter() {
+        val linearLayoutManager = LinearLayoutManager(this)
+        rvFeatures.apply {
+            layoutManager = linearLayoutManager
+            adapter = featuresAdapter
+        }
     }
 
     private fun showTemporalThumbnail() {
@@ -99,6 +110,7 @@ class ProductDetailActivity : AppCompatActivity() {
             txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
             txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
             txtProductDetilDescription.text = saveInfo(it.description)
+            featuresAdapter.updateFeatures(it.features)
         }
     }
 

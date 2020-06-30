@@ -13,7 +13,6 @@ class ProductResponseToProductDetailsMapper {
             soldQuantity = response.sold_quantity,
             title = response.title,
             price = response.price,
-            attributes = response.attributes,
             images = response.pictures.map { it.secure_url },
             warranty = response.warranty
         )

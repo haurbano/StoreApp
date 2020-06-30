@@ -14,4 +14,5 @@
     <string name="msg_product_price">$ %1$s</string>
     <string name="msg_description">Description</string>
     <string name="msg_info_no_available">Information not available</string>
+    <string name="msg_features">Features</string>
 </resources>

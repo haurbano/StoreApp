@@ -12,7 +12,6 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:tint="@color/color_black"
-      app:layout_constraintBottom_toTopOf="@+id/btnComprarProduct"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.5"
       app:layout_constraintStart_toStartOf="parent"
@@ -43,28 +42,16 @@
       app:layout_constraintTop_toBottomOf="@+id/productDetailImage"
       tools:visibility="gone" />
 
-  <Button
-      android:id="@+id/btnComprarProduct"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginBottom="8dp"
-      android:text="@string/button_title_buy"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent" />
-
   <ScrollView
       android:id="@+id/productDetailsContainer"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_marginTop="32dp"
-      android:layout_marginBottom="16dp"
       android:fillViewport="true"
-      tools:visibility="visible"
-      app:layout_constraintBottom_toTopOf="@+id/btnComprarProduct"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/productDetailImage">
+      app:layout_constraintTop_toBottomOf="@+id/productDetailImage"
+      tools:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -88,10 +75,10 @@
           android:layout_height="wrap_content"
           android:layout_marginTop="16dp"
           android:text="@string/msg_description"
-          android:textStyle="bold"
           android:textSize="20sp"
+          android:textStyle="bold"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/txtProductDetailPrice" />
+          app:layout_constraintTop_toBottomOf="@+id/rvFeatures" />
 
       <TextView
           android:id="@+id/tvProductDetailsTitle"
@@ -125,6 +112,28 @@
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@+id/tvProductDetailsTitle"
           tools:text="$ 400.000" />
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/rvFeatures"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="8dp"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.031"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtFeaturesTitle" />
+
+      <TextView
+          android:id="@+id/txtFeaturesTitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="16dp"
+          android:text="@string/msg_features"
+          android:textSize="20sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/txtProductDetailPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
   </ScrollView>
