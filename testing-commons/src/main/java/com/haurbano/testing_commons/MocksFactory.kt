@@ -24,7 +24,7 @@ class MocksFactory {
         return ProductPreview("New",
             "COP",
             "asf",
-            99000,
+            99000f,
             "fake URL",
             "FakeProduct"
         )
@@ -32,7 +32,6 @@ class MocksFactory {
 
     private fun getMockProductDetail() = ProductDetails(
         availableQuantity = 2,
-        attributes = emptyList(),
         condition = "New",
         id = "23jask323",
         title = "Mock Product",
@@ -40,7 +39,7 @@ class MocksFactory {
         warranty = "1 Year",
         currencyId = "COP",
         images = emptyList(),
-        price = 32000
+        price = 32000f
     )
 
     private fun getMockProductPreviewList(size: Int): List<ProductPreview> {

@@ -1,5 +1,6 @@
 package com.example.android_testing_commons
 
+import com.haurbano.remotedatasource.models.FeaturesAndDescriptionResponse
 import com.haurbano.remotedatasource.models.GetProductResponse
 import com.haurbano.remotedatasource.models.ProductsSearchResponse
 import com.haurbano.remotedatasource.models.SearchResult
@@ -12,20 +13,28 @@ class AndroidMocksFactory(
         return when(clazz) {
             ProductsSearchResponse::class.java -> getProductSearchResponse() as T
             GetProductResponse::class.java -> getProductDetailsResponse() as T
+            FeaturesAndDescriptionResponse::class.java -> getFeaturesAndDescriptionResponse() as T
             else -> mocksFactory.createObject(clazz)
         }
     }
 
+    private fun getFeaturesAndDescriptionResponse(): FeaturesAndDescriptionResponse {
+        return FeaturesAndDescriptionResponse(
+            id = "id",
+            main_features = emptyList(),
+            short_description = FeaturesAndDescriptionResponse.ShortDescription("","")
+        )
+    }
+
     private fun getProductDetailsResponse(): GetProductResponse {
         return GetProductResponse(
-            attributes = emptyList(),
-            price = 30000,
+            price = 30000f,
             warranty = "1 Year",
             title = "My Mock Product",
             id = "id",
             condition = "new",
             available_quantity = 3,
-            base_price = 27000,
+            base_price = 27000.toFloat(),
             category_id = "category",
             currency_id = "COP",
             initial_quantity = 1,
@@ -34,7 +43,8 @@ class AndroidMocksFactory(
             pictures = emptyList(),
             secure_thumbnail = "https:url",
             sold_quantity = 23,
-            thumbnail = "http:url"
+            thumbnail = "http:url",
+            catalog_product_id = "MLAaasda"
         )
     }
 
@@ -65,7 +75,7 @@ class AndroidMocksFactory(
             condition = "New",
             id = "id",
             title = "My product",
-            price = 23000,
+            price = 23000f,
             attributes = emptyList(),
             buying_mode = "Online",
             seller = SearchResult.Seller()
@@ -84,7 +94,7 @@ class AndroidMocksFactory(
             condition = "New",
             id = "id2",
             title = "My product 2",
-            price = 24000,
+            price = 24000f,
             attributes = emptyList(),
             buying_mode = "Online",
             seller = SearchResult.Seller()

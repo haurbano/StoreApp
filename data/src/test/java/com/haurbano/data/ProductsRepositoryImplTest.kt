@@ -3,6 +3,7 @@ package com.haurbano.data
 import com.haurbano.testing_commons.UnitTest
 import com.haurbano.data.datasources.ProductsRemoteDataSource
 import com.haurbano.data.repositories.ProductsRepositoryImpl
+import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.models.ProductPreview
 import kotlinx.coroutines.runBlocking
@@ -38,10 +39,10 @@ class ProductsRepositoryImplTest : UnitTest() {
         val response = productsRepositoryImpl.searchProductsBy(query)
 
         // Then
-        assert(response.size == 2)
+        assert(response.data?.size == 2)
     }
 
-    @Test(expected = IllegalStateException::class)
+    @Test
     fun `searchProductsBy and an error occurs`() = runBlocking {
         // Given
         val query = "Pixel 4"
@@ -51,7 +52,8 @@ class ProductsRepositoryImplTest : UnitTest() {
         val response = productsRepositoryImpl.searchProductsBy(query)
 
         // Then
-        // Error should be throw
+        assert(response.status == Status.ERROR)
+        assert(response.error != null)
     }
 
     @Test
@@ -65,19 +67,20 @@ class ProductsRepositoryImplTest : UnitTest() {
         val answer = productsRepositoryImpl.getProductDetails(productId)
 
         // Then
-        assert(answer == productDetails)
+        assert(answer.data == productDetails)
     }
 
-    @Test(expected = IllegalStateException::class)
+    @Test
     fun `getProductDetails and an error occurs`() = runBlocking {
         // Given
         val productId = "FakeID"
         `when`(remoteDataSource.getProductDetails(productId)).thenThrow(IllegalStateException())
 
         // When
-        val answer = productsRepositoryImpl.getProductDetails(productId)
+        val response = productsRepositoryImpl.getProductDetails(productId)
 
         // Then
-        // Error should be throw
+        assert(response.status == Status.ERROR)
+        assert(response.error != null)
     }
 }
