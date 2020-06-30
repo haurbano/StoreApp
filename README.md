@@ -27,5 +27,8 @@ Search application to find best products on Mercadolibre Argentina
 ###  Thrid Party Dependencies
 - **BuildSrc Strategy**: [Blog](https://proandroiddev.com/gradle-dependency-management-with-kotlin-94eed4df9a28)
 
+### Recuperation strategy of views
+I'm using **Kotlin Synthetic** and **View Binding** to show the both approaches.
+
 ## Architecture
 - Using **Clean Architechture** for the whole application and using **MVVM** for the presentation layer.
