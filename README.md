@@ -32,3 +32,7 @@ I'm using **Kotlin Synthetic** and **View Binding** to show the both approaches.
 
 ## Architecture
 - Using **Clean Architechture** for the whole application and using **MVVM** for the presentation layer.
+
+![Architecture diagram](https://raw.githubusercontent.com/haurbano/StoreApp/master/Architecture%20Diagram.png)
+
+
