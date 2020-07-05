@@ -4,7 +4,7 @@ import com.haurbano.domain.common.Resource
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.respositories.ProductsRepository
 
-class GetProductDetailsUseCase (
+class GetProductDetailsUseCase(
     private val productsRepository: ProductsRepository
 ) {
     suspend operator fun invoke(productId: String): Resource<ProductDetails> {
