@@ -2,6 +2,7 @@
     package="com.haurbano.mymercadolibre">
 
     <application
+        android:fullBackupContent="true"
         android:allowBackup="true"
         android:name=".MyMercadolibreApp"
         android:icon="@mipmap/ic_launcher"

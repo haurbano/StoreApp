@@ -17,6 +17,7 @@ import com.haurbano.presentation.databinding.ActivityProductDetailBinding
 import com.squareup.picasso.Picasso
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.collections.ArrayList
 
 class ProductDetailActivity : AppCompatActivity() {
 
@@ -110,7 +111,11 @@ class ProductDetailActivity : AppCompatActivity() {
             replaceThumbnail(it.images.first())
             binding.productDetailsContainer.tvProductDetailsTitle.text = it.title
             binding.productDetailsContainer.txtProductDetailPrice.text = getString(R.string.msg_product_price, it.price.displayPrice())
-            binding.productDetailsContainer.txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, it.condition.capitalize(), it.soldQuantity)
+            val condition: String = it.condition.capitalize()
+
+            // This is needed because a bug in the lint AS task, the lint checker needs to know this is a Integer
+            val soldQuantity: Int = it.soldQuantity
+            binding.productDetailsContainer.txtConditionSellsInfo.text = getString(R.string.msg_condition_sell_info, condition, soldQuantity)
             binding.productDetailsContainer.txtProductDetilDescription.text = saveInfo(it.description)
             featuresAdapter.updateFeatures(it.features)
         }
