@@ -6,7 +6,6 @@ import com.haurbano.domain.common.Status
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.respositories.ProductsRepository
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
-import com.haurbano.testing_commons.MocksFactory
 import com.haurbano.testing_commons.UnitTest
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -14,7 +13,7 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 
-class GetProductDetailUseCaseTest : UnitTest(){
+class GetProductDetailUseCaseTest : UnitTest() {
 
     @Mock
     lateinit var productsRepository: ProductsRepository
