@@ -14,6 +14,7 @@ internal object Versions {
     const val picassoVersion = "2.71828"
     const val mockito3Version = "3.3.3"
     const val coroutinesTestingVersion = "1.3.7"
+    const val coroutinesVersion = "1.3.7"
 }
 
 object Dependencies {
@@ -32,6 +33,7 @@ object Dependencies {
 
     const val retrofit              = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
+    const val coroutines            = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
 }
 
 object TestDependencies {

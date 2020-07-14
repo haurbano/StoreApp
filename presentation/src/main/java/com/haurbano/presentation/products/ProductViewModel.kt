@@ -4,9 +4,7 @@ import androidx.lifecycle.*
 import com.haurbano.domain.common.Resource
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.domain.usecases.SearchProductsUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ProductViewModel(
     private val searchProductsUseCase: SearchProductsUseCase
@@ -17,11 +15,9 @@ class ProductViewModel(
 
     fun searchBy(query: String) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                productsLiveData.postValue(Resource.loading())
-                val products = searchProductsUseCase(query)
-                productsLiveData.postValue(products)
-            }
+            productsLiveData.postValue(Resource.loading())
+            val products = searchProductsUseCase(query)
+            productsLiveData.postValue(products)
         }
     }
 }

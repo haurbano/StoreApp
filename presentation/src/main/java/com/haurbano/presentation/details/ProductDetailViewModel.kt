@@ -7,9 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.haurbano.domain.common.Resource
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class ProductDetailViewModel(
     private val getProductDetailsUseCase: GetProductDetailsUseCase
@@ -22,10 +20,8 @@ class ProductDetailViewModel(
     fun fetchProductDetails(productId: String) {
         productLiveData.postValue(Resource.loading())
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val productDetails = getProductDetailsUseCase(productId)
-                productLiveData.postValue(productDetails)
-            }
+            val productDetails = getProductDetailsUseCase(productId)
+            productLiveData.postValue(productDetails)
         }
     }
 }
