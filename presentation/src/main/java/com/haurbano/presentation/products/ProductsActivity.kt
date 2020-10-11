@@ -15,8 +15,8 @@ import com.haurbano.domain.common.Status.*
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.R
 import com.haurbano.presentation.common.ErrorMessageProvider
+import com.haurbano.presentation.databinding.ActivityProductsBinding
 import com.haurbano.presentation.details.ProductDetailActivity
-import kotlinx.android.synthetic.main.activity_products.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,10 +34,12 @@ class ProductsActivity : AppCompatActivity() {
     private val viewModel: ProductViewModel by viewModel()
     private val productAdapter = ProductAdapter(productClicked)
     private val errorMessageProvider: ErrorMessageProvider by inject()
+    private lateinit var binding: ActivityProductsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_products)
+        binding = ActivityProductsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupProductsAdapter()
         listenProductsChanges()
         checkSearchAction()
@@ -46,7 +48,7 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun addButtonsListener() {
-        imgUserFeedbackProducts.setOnClickListener {
+        binding.imgUserFeedbackProducts.setOnClickListener {
             onSearchRequested()
         }
     }
@@ -98,18 +100,18 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun hideProgressBar() {
-        progressBarProducts.visibility = View.GONE
+        binding.progressBarProducts.visibility = View.GONE
     }
 
     private fun showProgressBar() {
-        imgUserFeedbackProducts.visibility = View.GONE
-        txtUserFeedbackProducts.visibility = View.GONE
-        progressBarProducts.visibility = View.VISIBLE
+        binding.imgUserFeedbackProducts.visibility = View.GONE
+        binding.txtUserFeedbackProducts.visibility = View.GONE
+        binding.progressBarProducts.visibility = View.VISIBLE
     }
 
     private fun setupProductsAdapter() {
         val linearLayoutManager = GridLayoutManager(this, ITEMS_PER_ROW)
-        rvProducts.apply {
+        binding.rvProducts.apply {
             adapter = productAdapter
             layoutManager = linearLayoutManager
         }
@@ -125,32 +127,32 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun showEmptyResults() {
-        rvProducts.visibility = View.GONE
-        imgUserFeedbackProducts.setImageResource(R.drawable.ic_empty_box)
-        imgUserFeedbackProducts.visibility = View.VISIBLE
-        txtUserFeedbackProducts.text = getString(R.string.msg_empty_results)
-        txtUserFeedbackProducts.visibility = View.VISIBLE
+        binding.rvProducts.visibility = View.GONE
+        binding.imgUserFeedbackProducts.setImageResource(R.drawable.ic_empty_box)
+        binding.imgUserFeedbackProducts.visibility = View.VISIBLE
+        binding.txtUserFeedbackProducts.text = getString(R.string.msg_empty_results)
+        binding.txtUserFeedbackProducts.visibility = View.VISIBLE
     }
 
     private fun showFirstMessage() {
-        rvProducts.visibility = View.GONE
-        imgUserFeedbackProducts.setImageResource(R.drawable.ic_search_black_24dp)
-        imgUserFeedbackProducts.visibility = View.VISIBLE
-        txtUserFeedbackProducts.text = getString(R.string.first_message_user)
-        txtUserFeedbackProducts.visibility = View.VISIBLE
+        binding.rvProducts.visibility = View.GONE
+        binding.imgUserFeedbackProducts.setImageResource(R.drawable.ic_search_black_24dp)
+        binding.imgUserFeedbackProducts.visibility = View.VISIBLE
+        binding.txtUserFeedbackProducts.text = getString(R.string.first_message_user)
+        binding.txtUserFeedbackProducts.visibility = View.VISIBLE
     }
 
     private fun showErrorUI(msg: String) {
-        rvProducts.visibility = View.GONE
-        imgUserFeedbackProducts.setImageResource(R.drawable.ic_error_24)
-        imgUserFeedbackProducts.visibility = View.VISIBLE
-        txtUserFeedbackProducts.text = msg
-        txtUserFeedbackProducts.visibility = View.VISIBLE
+        binding.rvProducts.visibility = View.GONE
+        binding.imgUserFeedbackProducts.setImageResource(R.drawable.ic_error_24)
+        binding.imgUserFeedbackProducts.visibility = View.VISIBLE
+        binding.txtUserFeedbackProducts.text = msg
+        binding.txtUserFeedbackProducts.visibility = View.VISIBLE
     }
 
     private fun showProductsList() {
-        rvProducts.visibility = View.VISIBLE
-        imgUserFeedbackProducts.visibility = View.GONE
-        txtUserFeedbackProducts.visibility = View.GONE
+        binding.rvProducts.visibility = View.VISIBLE
+        binding.imgUserFeedbackProducts.visibility = View.GONE
+        binding.txtUserFeedbackProducts.visibility = View.GONE
     }
 }
