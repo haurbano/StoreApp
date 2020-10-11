@@ -25,6 +25,26 @@ android {
 
     buildFeatures {
         viewBinding = true
+        compose true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion '1.4.10'
+        kotlinCompilerExtensionVersion '1.0.0-alpha01'
     }
 }
 
@@ -51,6 +71,10 @@ dependencies {
 
     // UI
     implementation Dependencies.picasso
+    implementation Dependencies.composeUI
+    implementation Dependencies.composeUITooling
+    implementation Dependencies.composeFoundation
+    implementation Dependencies.composeMaterial
 
     // Testing
     testImplementation TestDependencies.jUnit

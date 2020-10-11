@@ -32,6 +32,14 @@ android {
         }
     }
 }
+// This task is needed to allow the previous kotlin compiler works, some code doesnt work with the new
+// kotlin compiler, REMEMBER this SIR!!!! The classes that were failing were
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs += ["-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check"]
+    }
+}
 
 preBuild.dependsOn ktlint
 

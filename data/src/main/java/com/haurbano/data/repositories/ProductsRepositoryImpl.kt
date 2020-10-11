@@ -22,10 +22,10 @@ class ProductsRepositoryImpl(
             val response = remoteDataSource.searchProductsBy(query)
             Resource.success(data = response)
         } catch (exc: IOException) {
-            Log.w(TAG, exc.message)
+            Log.w(TAG, exc.message!!)
             Resource.error(error = ErrorEntity.NetworkError)
         } catch (exc: Exception) {
-            Log.w(TAG, exc.message)
+            Log.w(TAG, exc.message!!)
             Resource.error(error = ErrorEntity.UnknownError)
         }
     }
@@ -35,10 +35,10 @@ class ProductsRepositoryImpl(
             val response = remoteDataSource.getProductDetails(productId)
             Resource.success(data = response)
         } catch (exc: IOException) {
-            Log.w(TAG, exc.message)
+            Log.w(TAG, exc.message!!)
             Resource.error(error = ErrorEntity.NetworkError)
         } catch (exc: Exception) {
-            Log.w(TAG, exc.message)
+            Log.w(TAG, exc.message!!)
             Resource.error(error = ErrorEntity.UnknownError)
         }
     }
