@@ -1,6 +1,6 @@
 
 internal object Versions {
-    const val kotlinVersion = "1.4.10"
+    const val kotlinVersion = "1.4.21"
     const val coreKtxVersion = "1.3.0"
     const val appCompatVersion = "1.1.0"
     const val jUnitVersion = "4.12"
@@ -15,7 +15,8 @@ internal object Versions {
     const val mockito3Version = "3.3.3"
     const val coroutinesTestingVersion = "1.3.7"
     const val coroutinesVersion = "1.3.7"
-    const val composeVersion = "1.0.0-alpha01"
+    const val composeVersion = "1.0.0-alpha09"
+    const val composeVersionUIToolkit = "1.0.0-alpha07"
 }
 
 object Dependencies {
@@ -38,7 +39,7 @@ object Dependencies {
 
     // Compose
     const val composeUI             =  "androidx.compose.ui:ui:${Versions.composeVersion}"
-    const val composeUITooling      =  "androidx.ui:ui-tooling:${Versions.composeVersion}"
+    const val composeUITooling      =  "androidx.ui:ui-tooling:${Versions.composeVersionUIToolkit}"
     const val composeFoundation      =  "androidx.compose.foundation:foundation:${Versions.composeVersion}"
     const val composeMaterial       =  "androidx.compose.material:material:${Versions.composeVersion}"
     const val composeMaterialIcons  =  "androidx.compose.material:material-icons-core:${Versions.composeVersion}"
