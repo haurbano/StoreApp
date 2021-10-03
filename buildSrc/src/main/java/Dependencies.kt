@@ -15,8 +15,8 @@ internal object Versions {
     const val mockito3Version = "3.3.3"
     const val coroutinesTestingVersion = "1.3.7"
     const val coroutinesVersion = "1.3.7"
-    const val composeVersion = "1.0.0"
-    const val composeVersionUIToolkit = "1.0.0"
+    const val composeVersion = "1.0.3"
+    const val composeVersionUIToolkit = "1.0.0-alpha07"
 }
 
 object Dependencies {
@@ -46,6 +46,7 @@ object Dependencies {
     const val composeMaterialIconsEx =  "androidx.compose.material:material-icons-extended:${Versions.composeVersion}"
     const val composeLiveData       =  "androidx.compose.runtime:runtime-livedata:${Versions.composeVersion}"
     const val composeRxJava         =  "androidx.compose.runtime:runtime-rxjava2:${Versions.composeVersion}"
+    const val composeActivity       =  "androidx.activity:activity-compose:1.3.1"// To use setContent -.-
 }
 
 object TestDependencies {
