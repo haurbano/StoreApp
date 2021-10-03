@@ -73,6 +73,7 @@ dependencies {
     implementation Dependencies.composeFoundation
     implementation Dependencies.composeMaterial
     implementation Dependencies.composeActivity
+    implementation Dependencies.coilCompose
 
     // Testing
     testImplementation TestDependencies.jUnit

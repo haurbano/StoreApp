@@ -1,27 +1,38 @@
 package com.haurbano.presentation.details
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.haurbano.domain.common.Resource
 import com.haurbano.domain.models.ProductDetails
 import com.haurbano.domain.usecases.GetProductDetailsUseCase
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ProductDetailViewModel(
     private val getProductDetailsUseCase: GetProductDetailsUseCase
 ) : ViewModel() {
 
-    private val productLiveData = MutableLiveData<Resource<ProductDetails>>()
-
-    fun getProduct(): LiveData<Resource<ProductDetails>> = productLiveData
+    private val _uiState = MutableStateFlow(
+        ProductDetailsUIState(isLoading = true, productDetails = ProductDetails.empty())
+    )
+    val uiState: StateFlow<ProductDetailsUIState> = _uiState.asStateFlow()
 
     fun fetchProductDetails(productId: String) {
-        productLiveData.postValue(Resource.loading())
         viewModelScope.launch {
             val productDetails = getProductDetailsUseCase(productId)
-            productLiveData.postValue(productDetails)
+            _uiState.update {
+                it.copy(
+                    isLoading = false,
+                    productDetails = productDetails.data?: ProductDetails.empty()
+                )
+            }
         }
     }
 }
+
+data class ProductDetailsUIState(
+    val isLoading: Boolean = false,
+    val productDetails: ProductDetails
+)

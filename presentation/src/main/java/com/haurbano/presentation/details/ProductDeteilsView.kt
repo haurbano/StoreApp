@@ -1,39 +1,43 @@
 package com.haurbano.presentation.details
 
-import android.util.Log
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.haurbano.domain.models.ProductDetails
-import com.haurbano.presentation.common.composes.NetworkImage
+import com.haurbano.presentation.common.composes.LoadingScreen
 import com.haurbano.presentation.common.displayPrice
 
 @Composable
-fun ProductDetailsView(productDetail: ProductDetails) {
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Header(productDetail = productDetail)
+fun ProductDetailsScreen(productVM: ProductDetailViewModel){
+    val uiState by productVM.uiState.collectAsState()
+    if (uiState.isLoading) {
+        LoadingScreen()
+    } else {
+        ProductDetailsContent(productDetail = uiState.productDetails)
     }
 }
 
-@Composable fun Header(
+@Composable fun ProductDetailsContent(
     productDetail: ProductDetails,
     modifier: Modifier = Modifier
 ) {
-    Column(
-        modifier = modifier.padding(16.dp).fillMaxWidth()
-    ) {
-        NetworkImage(
-            url = productDetail.images.first(),
-            modifier = modifier.align(Alignment.CenterHorizontally).fillMaxWidth()
-        )
-        Text(text = "${productDetail.condition.capitalize()} - ${productDetail.soldQuantity} Sold")
-        Text(text = productDetail.title)
-        Text(text = productDetail.price.displayPrice())
+    Column {
+        Image(painter = rememberImagePainter(productDetail.images.first()), contentDescription = "Image Product")
+        Column(
+            modifier = modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+        ) {
+
+            Text(text = "${productDetail.condition.capitalize()} - ${productDetail.soldQuantity} Sold")
+            Text(text = productDetail.title)
+            Text(text = productDetail.price.displayPrice())
+        }
     }
 }
