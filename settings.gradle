@@ -5,4 +5,4 @@ include ':data'
 include ':presentation'
 include ':domain'
 include ':app'
-rootProject.name = "MyMercadoLibre"
+rootProject.name = "My Mercado Libre"

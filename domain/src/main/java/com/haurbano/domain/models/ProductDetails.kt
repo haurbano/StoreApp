@@ -12,4 +12,21 @@ data class ProductDetails(
     val warranty: String?,
     var description: String? = "",
     var features: List<ProductFeature> = emptyList()
-)
+) {
+    companion object {
+        fun empty(): ProductDetails =
+            ProductDetails(
+                0,
+                "",
+                "",
+                "",
+                0f,
+                0,
+                "",
+                emptyList(),
+                "",
+                "",
+                emptyList()
+            )
+    }
+}
