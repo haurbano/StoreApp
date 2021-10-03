@@ -15,8 +15,8 @@ internal object Versions {
     const val mockito3Version = "3.3.3"
     const val coroutinesTestingVersion = "1.3.7"
     const val coroutinesVersion = "1.3.7"
-    const val composeVersion = "1.0.0-alpha09"
-    const val composeVersionUIToolkit = "1.0.0-alpha07"
+    const val composeVersion = "1.0.0"
+    const val composeVersionUIToolkit = "1.0.0"
 }
 
 object Dependencies {
