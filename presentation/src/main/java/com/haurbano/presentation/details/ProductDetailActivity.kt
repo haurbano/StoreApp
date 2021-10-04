@@ -25,14 +25,11 @@ class ProductDetailActivity : ComponentActivity() {
 
         fun start(
             context: Context,
-            productId: String,
-            thumbnail: String = "",
-            bundleTransaction: Bundle? = null
+            productId: String
         ) {
             val intent = Intent(context, ProductDetailActivity::class.java)
             intent.putExtra(PRODUCT_ID_KEY, productId)
-            intent.putExtra(THUMBNAIL_KEY, thumbnail)
-            context.startActivity(intent, bundleTransaction)
+            context.startActivity(intent)
         }
     }
 
