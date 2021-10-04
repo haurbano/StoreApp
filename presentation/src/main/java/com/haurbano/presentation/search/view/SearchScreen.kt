@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -12,8 +13,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.lazy.items
-import androidx.compose.ui.focus.focusModifier
 import coil.compose.rememberImagePainter
 import com.haurbano.domain.models.ProductPreview
 import com.haurbano.presentation.common.composes.LoadingScreen
@@ -72,12 +71,13 @@ fun ProductView(modifier: Modifier, product: ProductPreview, clicked: (String) -
     Card(modifier= modifier) {
         Row(modifier = Modifier.clickable {clicked(product.id)} ) {
             Image(
+                modifier= Modifier.height(70.dp),
                 painter = rememberImagePainter(product.thumbnail),
                 contentDescription = "Image thumbnail"
             )
-            Column(modifier = Modifier.padding(5.dp, 0.dp)) {
+            Column(modifier = Modifier.padding(5.dp, 5.dp)) {
                 Text(text = product.title)
-            }    
+            }
         }
     }
 }
